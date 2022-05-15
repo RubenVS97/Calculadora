@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author diabl
  */
-public class PanelBotones extends JPanel{
+public class PanelBotones extends JPanel {
 
     JButton[] grupoBotones = new JButton[16];
 
