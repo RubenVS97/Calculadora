@@ -22,11 +22,12 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private PanelBotones botonera;
     private JTextArea areaTexto;
     private int tipoOperacion;
-    
+
     static double num1 = -1;
     static double num2 = -1;
-    static double resultado = 0;
+    static double resultado = -1;
     static String signo = "";
+    static boolean primeraIteracion = false;
 
     public PanelPrincipal() {
         initComponents();
@@ -58,8 +59,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
             System.out.println(((JButton) o).getText());
             areaTexto.setText(((JButton) o).getText());
             if (areaTexto.getText().equals("0") || areaTexto.getText().equals("1") || areaTexto.getText().equals("2") || areaTexto.getText().equals("3") || areaTexto.getText().equals("4") || areaTexto.getText().equals("5") || areaTexto.getText().equals("6") || areaTexto.getText().equals("7") || areaTexto.getText().equals("8") || areaTexto.getText().equals("9")) {
-                if (num1 == -1) {
+                if (!primeraIteracion) {
                     num1 = Double.parseDouble(areaTexto.getText());
+                    primeraIteracion = true;
                 } else {
                     num2 = Double.parseDouble(areaTexto.getText());
                 }
@@ -82,23 +84,28 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     resultado = num1 - num2;
                     System.out.println(resultado);
                     areaTexto.setText(String.valueOf(resultado));
+                    num1 = resultado;
                 } else if (signo.equalsIgnoreCase("+")) {
                     resultado = num1 + num2;
                     System.out.println(resultado);
                     areaTexto.setText(String.valueOf(resultado));
+                    num1 = resultado;
                 } else if (signo.equalsIgnoreCase("*")) {
                     resultado = num1 * num2;
                     System.out.println(resultado);
                     areaTexto.setText(String.valueOf(resultado));
+                    num1 = resultado;
                 } else {
                     resultado = num1 / num2;
                     System.out.println(resultado);
                     areaTexto.setText(String.valueOf(resultado));
+                    num1 = resultado;
                 }
             } else if (areaTexto.getText().equals("C")) {
                 num1 = -1;
                 num2 = -1;
                 resultado = 0;
+                primeraIteracion = true;
             }
         }
 
